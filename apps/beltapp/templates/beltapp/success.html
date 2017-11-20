@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+            <meta charset="UTF-8">
+            <title>Success</title>
+            <style>
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+                p{
+                    color:rgb(43, 226, 52);
+                }
+                h1{color:rgb(131, 90, 124);}
+                h2{color:rgb(120, 170, 211);}
+            </style>
+    </head>
+
+    <body>
+        <h1>Hello, {{user.first_name}}!</h1>
+       
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <p>You can log Out here</p>
+        <a href="/logout">logout</a>
+        <h2>Here is the list of your friends:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Alias</th>
+                    <th>Actions</th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for friend in friends %}
+                <tr>
+                    <td>{{friend.name}}</td>
+                   
+                    <td><a href ="/friendprofile/{{friend.id}}">View Profile</a>| <a href="/removefriend/{{friend.id}}">Remove as Friend</a></td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        <h2>Other Users not on your friend's list:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Alias</th>
+                    <th>Actions</th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for other in others %}
+                <tr>
+                    <td><a href="/othersprofile/{{other.id}}">{{other.name}}</a></td>
+                   
+                    <td><a href ="/addfriend/{{other.id}}">Add as Friend</a></td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    
+  
+    </body>
+</html>
